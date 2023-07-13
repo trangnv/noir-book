@@ -1,5 +1,9 @@
-# Summary
+# The Noir Programming Language
 
-- [Introduction](README.md)
-- [Chapter 1: Installation](chapter-1.md)
-- [Chapter 2: Data types](chapter-2.md)
+[The Noir Programming Language](00-00-title-page.md)
+
+## Getting started
+
+- [Getting Started](01-00-getting-started.md)
+  - [Installation](01-01-installation.md)
+  - [Hello, World!](01-02-hello-world.md)

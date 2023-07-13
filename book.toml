@@ -1,7 +1,7 @@
 [book]
-authors = ["Michael Currin"]
+authors = ["trangnv"]
 language = "en"
 multilingual = false
 src = "src"
-title = "mdBook Quickstart"
-description = "Demo site for mdBook Quickstart repo"
+title = "Noir programming language book"
+description = "Book for Noir programming language"
