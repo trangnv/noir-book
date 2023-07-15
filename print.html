@@ -84,7 +84,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="00-01-introduction.html">The Noir Programming Language</a></li><li class="chapter-item expanded "><a href="01-00-getting-started.html"><strong aria-hidden="true">1.</strong> Getting Started</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="01-01-installation.html"><strong aria-hidden="true">1.1.</strong> Installation</a></li><li class="chapter-item expanded "><a href="01-02-hello-world.html"><strong aria-hidden="true">1.2.</strong> Hello, World!</a></li><li class="chapter-item expanded "><a href="01-03-project-breakdown.html"><strong aria-hidden="true">1.3.</strong> Project breakdown</a></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="00-00-title-page.html">The Noir Programming Language</a></li><li class="chapter-item expanded "><a href="01-00-getting-started.html"><strong aria-hidden="true">1.</strong> Getting Started</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="01-01-installation.html"><strong aria-hidden="true">1.1.</strong> Installation</a></li><li class="chapter-item expanded "><a href="01-02-hello-world.html"><strong aria-hidden="true">1.2.</strong> Hello, World!</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -167,118 +167,10 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="introduction"><a class="header" href="#introduction">Introduction</a></h1>
-<h2 id="what-is-noir"><a class="header" href="#what-is-noir">What is Noir?</a></h2>
-<p>Noir is a fully open-source language for private, succinctly provable programs.. It's design choices are influenced heavily by Rust.</p>
-<p>Noir is flexible in its design, as it does not compile immediately to a fixed NP-complete language. Instead, Noir compiles to an intermediate language (ACIR), which itself can be compiled to an arithmetic circuit (if choosing to target Aztec's barretenberg backend) or a rank-1 constraint system (if choosing to target an R1CS backend like Arkwork's Marlin backend, or others)</p>
-<h2 id="what-can-you-do-with-noir"><a class="header" href="#what-can-you-do-with-noir">What can you do with Noir?</a></h2>
-<ul>
-<li>
-<p>First of course Noir can be used to write program which can be compiled to an intermediate language (ACIR), which itself can be compiled to an arithmetic circuit (if choosing to target Aztec's barretenberg backend), or a rank-1 constraint system (if choosing to target an R1CS backend like Arkwork's Marlin backend, or others)</p>
-</li>
-<li>
-<p>Noir currently includes a command to publish a Solidity contract which verifies your Noir program.</p>
-</li>
-</ul>
+                        <h1 id="the-noir-programming-language"><a class="header" href="#the-noir-programming-language">The Noir Programming Language</a></h1>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="getting-started"><a class="header" href="#getting-started">Getting Started</a></h1>
-<p>We’ll discuss:</p>
-<ul>
-<li>Installing <code>nargo</code>, a command line tool for interacting with Noir programs (e.g. compiling, proving, verifying and more)</li>
-<li>Writing a program that proves knowledge of a preimage of a hash function</li>
-</ul>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="installation"><a class="header" href="#installation">Installation</a></h1>
-<p>If you're on OSX or Linux, the easiest way to start using Noir and Nargo is via noirup. Just open a terminal and run:</p>
-<pre><code class="language-bash">curl -L https://raw.githubusercontent.com/noir-lang/noirup/main/install | bash
-</code></pre>
-<p>Close the terminal, open another one, and run</p>
-<pre><code class="language-bash">noirup
-</code></pre>
-<p>Done, you should have the latest version working. You can check with <code>nargo --version</code>.</p>
-<p>Nightly versions
-To install the nightly version of Noir (updated daily) run:</p>
-<pre><code class="language-bash">noirup -n
-</code></pre>
-<p>For other options of installation, see details at <a href="https://noir-lang.org/getting_started/nargo_installation">noir-lang.org</a></p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="hello-world"><a class="header" href="#hello-world">Hello, World!</a></h1>
-<p>Now you have Noir installed, let's write a simple program to test it out.</p>
-<h2 id="creating-new-projects"><a class="header" href="#creating-new-projects">Creating new projects</a></h2>
-<p>Open a terminal and enter the following commands to make a projects directory and a directory for our “Hello, world!” project within the projects directory.</p>
-<p>For Linux, macOS, and PowerShell on Windows, enter this:</p>
-<pre><code class="language-bash">mkdir ~/projects
-cd ~/projects
-mkdir hello_world
-cd hello_world
-</code></pre>
-<h2 id="writing-a-noir-program"><a class="header" href="#writing-a-noir-program">Writing a Noir program</a></h2>
-<p>Now open the <code>main.nr</code> file you just created and enter the code in Listing 1-1.</p>
-<p>Filename: main.nr</p>
-<pre><pre class="playground"><code class="language-rust">use dep::std;
-
-fn main(hash : pub Field, pre_image : Field) {
-    let hash_of_pre_image = std::hash::pedersen([pre_image])[0];
-    assert(hash == hash_of_pre_image);
-}</code></pre></pre>
-<p>Listing 1-1: A program that proves knowledge of a preimage of a hash function</p>
-<p>The purpose of this program is (the Prover) to prove knowledge of a preimage of a hash function.</p>
-<ul>
-<li>
-<p>The Prover would run the program which takes two arguments, a hash and a preimage. It hashes the preimage and checks that the hash matches the given hash and generates a proof.</p>
-</li>
-<li>
-<p>The Verifier can verify the correct execution of our Noir program by verifying the proof generated by the Prover.</p>
-</li>
-</ul>
-<h2 id="build-inputoutput-files"><a class="header" href="#build-inputoutput-files">Build input/output files</a></h2>
-<p>Next step, Build in/output files for your Noir program by running:</p>
-<pre><code class="language-bash">nargo check
-</code></pre>
-<p>Two additional files would be generated in your project directory:</p>
-<ul>
-<li>
-<p><code>Prover.toml</code> containts input values known to the Prover,</p>
-</li>
-<li>
-<p><code>Verifier.toml</code> contains public values shown to the Verifier.</p>
-</li>
-</ul>
-<p>Fill up the <code>Prover.toml</code> file with the following values:</p>
-<pre><code class="language-toml">hash = &quot;0x03fdabb754f4f499c12406532fc924264db1b70702888a191683157056334d61&quot;
-pre_image = &quot;0&quot;
-</code></pre>
-<p>The <code>Verifier.toml</code> file should contain only the hash value:</p>
-<pre><code class="language-toml">hash = &quot;0x03fdabb754f4f499c12406532fc924264db1b70702888a191683157056334d61&quot;
-</code></pre>
-<h2 id="prove-our-noir-program"><a class="header" href="#prove-our-noir-program">Prove our Noir program</a></h2>
-<p>Prove the valid execution of our Noir program with your preferred proof name, for example <code>p</code>:</p>
-<pre><code class="language-bash">nargo prove p
-</code></pre>
-<p>A new folder <code>proofs</code> would then be generated in your project directory, containing the proof file <code>p.proof</code>.</p>
-<h2 id="verify-our-noir-program"><a class="header" href="#verify-our-noir-program">Verify our Noir program</a></h2>
-<p>Once a proof is generated, we can verify correct execution of our Noir program by verifying the proof file, by running:</p>
-<pre><code class="language-bash">nargo verify p
-</code></pre>
-<p>If the verification complete successfully the Termial won't show any information. If it fails, it will log the corresponding error instead.</p>
-<h1 id="summary"><a class="header" href="#summary">Summary</a></h1>
-<p>You have successfully written, proved and verified your first Noir program! Let's recap what we have learned:</p>
-<ul>
-<li>
-<p>Install Noir and Nargo using noirup</p>
-</li>
-<li>
-<p>Create a new Noir project</p>
-</li>
-<li>
-<p>Write a first Noir program</p>
-</li>
-<li>
-<p>Build input/output files which used by our Noir program</p>
-</li>
-<li>
-<p>Prove and verify our Noir program using Nargo CLI</p>
-</li>
-</ul>
-<p>In the next chapter, we will break down the program we just wrote and explain what each part does in detail.</p>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="project-breakdown"><a class="header" href="#project-breakdown">Project breakdown</a></h1>
 
                     </main>
 
